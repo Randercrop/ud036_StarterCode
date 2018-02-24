@@ -6,7 +6,7 @@ Source code for a Movie Trailer website.
 To download:
      Click <a href="https://github.com/Randercrop/ud036_StarterCode">here</a> to download the source code.
      
-To Run: </br>
+To Run:
 
      &emsp;Install <a href="https://www.python.org/download/releases/2.7/"python</a>.
      
