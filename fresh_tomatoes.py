@@ -42,6 +42,7 @@ main_page_head = '''
         .movie-tile:hover {
             background-color: #EEE;
             cursor: pointer;
+            
         }
         .scale-media {
             padding-bottom: 56.25%;
@@ -56,6 +57,18 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
+        .grid-container{
+            display: grid;
+            grid-gap: 5px;
+            grid-template-columns: auto auto auto;
+            justify-content: space-evenly;
+        }
+        .grid-item{
+            border: 1px solid black;
+        }
+
+
+
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -74,6 +87,7 @@ main_page_head = '''
               'src': sourceUrl,
               'frameborder': 0
             }));
+            
         });
         // Animate in the movies when the page loads
         $(document).ready(function () {
@@ -81,6 +95,7 @@ main_page_head = '''
             $(this).next("div").show("fast", showNext);
           });
         });
+
     </script>
 </head>
 '''
@@ -112,7 +127,7 @@ main_page_content = '''
         </div>
       </div>
     </div>
-    <div class="container">
+    <div class="grid-container">
       {movie_tiles}
     </div>
   </body>
@@ -122,9 +137,10 @@ main_page_content = '''
 
 # A single movie entry html template
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
+<div class="movie-tile text-center grid-item" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
+    <p class="hide" id="description">{movie_description}</p>
 </div>
 '''
 
@@ -145,7 +161,8 @@ def create_movie_tiles_content(movies):
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id, 
+            movie_description = movie.title + " <br> " + movie.year
         )
     return content
 
